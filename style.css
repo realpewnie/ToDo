@@ -1,0 +1,103 @@
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("./JetBrainsMono.ttf") format("truetype");
+    font-weight: 100 800;
+}
+
+body {
+    font-family: "JetBrains Mono", monospace;
+    background-color: #212121;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 11px 11px 76px;
+}
+p {
+    font-size: 12px;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+.terminal {
+    letter-spacing: 0.5px;
+    line-height: 1;
+}
+
+.terminal p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: pre-wrap
+}
+
+.logo{
+    color:#b3b3b3;
+}
+.ToDoList{
+    color:#d5d5d5;
+}
+
+.task-status-done {
+    color: #9b9b9b;
+}
+
+.task-status-undone {
+    color: #606060;
+}
+
+.cursor {
+    color: #757575;
+    font-weight: 800;
+    text-shadow: 0.15px 0 #757575;
+}
+
+.inputcommand {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #262626;
+    padding: 10px;
+}
+
+.command-input {
+    font-family: "JetBrains Mono", monospace;
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #212121;
+    color: #ffffff;
+    border: none;
+    outline: none;
+}
+.command-send {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #343434;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: #212121;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}

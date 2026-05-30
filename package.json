@@ -34,7 +34,6 @@
     "files": [
       "**/*",
       "!dist/**/*",
-      "!build/**/*",
       "!node_modules/.cache/**/*",
       "!.git/**/*",
       "!.github/**/*"
@@ -61,6 +60,18 @@
       "category": "Utility",
       "maintainer": "pewnie <michalkozak2008@gmail.com>",
       "icon": "build/icon.png"
+    },
+    "pacman": {
+      "depends": [
+        "gtk3",
+        "libnotify",
+        "nss",
+        "libxss",
+        "libxtst",
+        "xdg-utils",
+        "at-spi2-core",
+        "libsecret"
+      ]
     }
   }
 }

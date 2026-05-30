@@ -1,17 +1,66 @@
 {
-  "name": "nowaapka",
-  "version": "1.0.0",
-  "description": "",
+  "name": "todo",
+  "version": "1.3.0",
+  "description": "Terminal-like todo app",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "/usr/bin/electron ."
+    "start": "/usr/bin/electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "todo",
+    "electron",
+    "terminal"
+  ],
+  "author": {
+    "name": "pewnie",
+    "email": "michalkozak2008@gmail.com"
+  },
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "electron": "^42.3.0"
+    "electron": "^42.3.0",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.pewnie.todo",
+    "productName": "ToDo",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**/*",
+      "!build/**/*",
+      "!node_modules/.cache/**/*",
+      "!.git/**/*",
+      "!.github/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ToDo"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "pacman",
+        "deb"
+      ],
+      "category": "Utility",
+      "maintainer": "pewnie <michalkozak2008@gmail.com>",
+      "icon": "build/icon.png"
+    }
   }
 }

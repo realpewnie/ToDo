@@ -2,6 +2,27 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const fs = require("fs");
 const path = require("path");
 
+function getBundledTasksPath() {
+  return path.join(__dirname, "tasks.json");
+}
+
+function getUserTasksPath() {
+  return path.join(app.getPath("userData"), "tasks.json");
+}
+
+function formatTasksData(data) {
+  const lang = typeof data?.lang === "string" && /^[a-z]{2}$/.test(data.lang) ? data.lang : "en";
+  const tasks = Array.isArray(data?.tasks) ? data.tasks : [];
+  const tasksJson = JSON.stringify(tasks, null, 2).replace(/\n/g, "\n  ");
+
+  return `{"lang": ${JSON.stringify(lang)},\n  "tasks": ${tasksJson}\n}\n`;
+}
+
+async function readJsonFile(filePath) {
+  const json = await fs.promises.readFile(filePath, "utf8");
+  return JSON.parse(json);
+}
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 900,
@@ -23,21 +44,27 @@ ipcMain.on("app:exit", () => {
 });
 
 ipcMain.handle("tasks:save", async (_event, data) => {
-  const filePath = path.join(__dirname, "tasks.json");
-  const tasksJson = JSON.stringify(data.tasks, null, 2).replace(/\n/g, "\n  ");
-  const json = `{"lang": ${JSON.stringify(data.lang)},\n  "tasks": ${tasksJson}\n}\n`;
+  const filePath = getUserTasksPath();
+  const json = formatTasksData(data);
 
+  await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
   await fs.promises.writeFile(filePath, json, "utf8");
 });
 
 ipcMain.handle("tasks:load", async () => {
-  const filePath = path.join(__dirname, "tasks.json");
+  const userTasksPath = getUserTasksPath();
 
   try {
-    const json = await fs.promises.readFile(filePath, "utf8");
-    return JSON.parse(json);
+    return await readJsonFile(userTasksPath);
   } catch {
-    return [];
+    try {
+      return await readJsonFile(getBundledTasksPath());
+    } catch {
+      return {
+        lang: "en",
+        tasks: []
+      };
+    }
   }
 });
 

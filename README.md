@@ -29,88 +29,21 @@ The app is meant to run through Electron. Live Preview can show the UI, but file
 ## ./commands
 
 ```txt
-~ > help
+~ > help                         show commands
+~ > addtask finish README        add task
+~ > removetask 1                 remove task
+~ > edit 1 finish docs           edit task text
+~ > move 3 1                     move task
+~ > done 1                       mark done
+~ > undone 1                     mark not done
+~ > echo hello\nworld            print text, supports \n
+~ > copy 2                       copy task text
+~ > lang list                    list languages
+~ > lang pl                      change language
+~ > clear                        clear terminal
+~ > about                        app info
+~ > exit                         close app
 ```
-
-Prints the command list.
-
-```txt
-~ > addtask finish README
-```
-
-Adds a task.
-
-```txt
-~ > removetask 1
-```
-
-Removes task `1`.
-
-```txt
-~ > edit 1 finish terminal README
-```
-
-Changes the text of task `1`.
-
-```txt
-~ > move 3 1
-```
-
-Moves task `3` to position `1`.
-
-```txt
-~ > done 1
-```
-
-Marks task `1` as done.
-
-```txt
-~ > undone 1
-```
-
-Marks task `1` as not done.
-
-```txt
-~ > echo hello\nworld
-```
-
-Prints text to the terminal. `\n` creates a new line.
-
-```txt
-~ > copy 2
-```
-
-Copies the text of task `2` to the clipboard.
-
-```txt
-~ > lang list
-```
-
-Shows available languages.
-
-```txt
-~ > lang pl
-```
-
-Changes the app language.
-
-```txt
-~ > clear
-```
-
-Clears the terminal output.
-
-```txt
-~ > about
-```
-
-Prints app info.
-
-```txt
-~ > exit
-```
-
-Closes the app.
 
 ## ./languages
 

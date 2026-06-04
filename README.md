@@ -13,6 +13,10 @@ Terminal-style todo app built with Electron.
 
 No big buttons. No huge dashboard. Just commands, tasks, and a little terminal energy.
 
+```txt
+current version: 1.5.0
+```
+
 ## ./run
 
 ```bash
@@ -71,6 +75,12 @@ Marks task `1` as not done.
 ```
 
 Prints text to the terminal. `\n` creates a new line.
+
+```txt
+~ > copy 2
+```
+
+Copies the text of task `2` to the clipboard.
 
 ```txt
 ~ > lang list
@@ -152,13 +162,33 @@ Task status is rendered like this:
 ## ./files
 
 ```txt
-index.html       command logic and app UI
+index.html       app shell
+renderer.js      command logic and app UI behavior
 style.css        terminal styling
 main.js          Electron main process
 preload.js       bridge between UI and Electron
 tasks.json       saved language and tasks
 lang/*.json      translations
 JetBrainsMono.ttf
+```
+
+## ./build
+
+```bash
+npm run build:win
+npm run build:linux
+```
+
+Current `1.5.0` build targets:
+
+```txt
+Windows:
+  ToDo Setup 1.5.0.exe
+
+Linux:
+  ToDo-1.5.0.AppImage
+  todo-1.5.0.pacman
+  todo_1.5.0_amd64.deb
 ```
 
 ## ./dev-notes
@@ -174,6 +204,8 @@ JSON language files
 ```
 
 The renderer does not write files directly. It calls Electron through `preload.js`, then `main.js` handles filesystem access.
+
+Selecting text in the app copies it to the clipboard after the mouse button is released. The `copy <number>` command uses the same clipboard bridge.
 
 ## ./credits
 

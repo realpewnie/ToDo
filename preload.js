@@ -5,5 +5,6 @@ contextBridge.exposeInMainWorld("appApi", {
   saveTasks: (data) => ipcRenderer.invoke("tasks:save", data),
   loadTasks: () => ipcRenderer.invoke("tasks:load"),
   loadLang: (languageCode) => ipcRenderer.invoke("lang:load", languageCode),
-  listLangs: () => ipcRenderer.invoke("lang:list")
+  listLangs: () => ipcRenderer.invoke("lang:list"),
+  copyText: (text) => ipcRenderer.send("clipboard:copy", text)
 });

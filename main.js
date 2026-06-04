@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, clipboard } = require("electron");
 const fs = require("fs");
 const path = require("path");
 
@@ -41,6 +41,10 @@ app.whenReady().then(createWindow);
 
 ipcMain.on("app:exit", () => {
   app.quit();
+});
+
+ipcMain.on("clipboard:copy", (_event, text) => {
+  clipboard.writeText(text);
 });
 
 ipcMain.handle("tasks:save", async (_event, data) => {
